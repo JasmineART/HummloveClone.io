@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - HummloveClone.io</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cart-container {
+      max-width: 700px;
+      margin: 3rem auto;
+      background: var(--color-tan);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 2rem;
+    }
+    .cart-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+    .cart-table th, .cart-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--color-black);
+      text-align: left;
+    }
+    .cart-table th {
+      background: var(--color-salmon);
+      color: var(--color-white);
+    }
+    .cart-table td img {
+      width: 60px;
+      border-radius: 4px;
+    }
+    .cart-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+    .cart-total {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--color-salmon);
+      text-align: right;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <h1 class="site-title">HummloveClone.io</h1>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+        &#9776;
+      </button>
+      <nav id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="active">Cart</a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="cart-container">
+      <h2 class="text-center text-salmon">Your Shopping Cart</h2>
+      <div id="cartContent"></div>
+    </div>
+  </main>
+
+  <footer class="footer text-center">
+    <div class="footer-content">
+      <span>&copy; 2025 HummloveClone.io. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="active">Cart</a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Sample product data (should match shop.html)
+    const products = [
+      { id: 1, name: 'Handmade Mug', price: 18, img: 'https://via.placeholder.com/250x150?text=Mug' },
+      { id: 2, name: 'Salmon Throw Pillow', price: 24, img: 'https://via.placeholder.com/250x150?text=Pillow' },
+      { id: 3, name: 'Black Canvas Tote', price: 15, img: 'https://via.placeholder.com/250x150?text=Tote' },
+      { id: 4, name: 'Tan Pillow', price: 22, img: 'https://via.placeholder.com/250x150?text=Tan+Pillow' },
+      { id: 5, name: 'Salmon Mug', price: 19, img: 'https://via.placeholder.com/250x150?text=Salmon+Mug' },
+      { id: 6, name: 'Black Mug', price: 20, img: 'https://via.placeholder.com/250x150?text=Black+Mug' },
+      { id: 7, name: 'Tan Tote', price: 16, img: 'https://via.placeholder.com/250x150?text=Tan+Tote' },
+      { id: 8, name: 'Salmon Tote', price: 17, img: 'https://via.placeholder.com/250x150?text=Salmon+Tote' }
+    ];
+
+    // Cart logic using localStorage
+    function getCart() {
+      return JSON.parse(localStorage.getItem('cart') || '[]');
+    }
+    function setCart(cart) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    function removeFromCart(id) {
+      let cart = getCart();
+      cart = cart.filter(item => item.id !== id);
+      setCart(cart);
+      renderCart();
+    }
+    function renderCart() {
+      const cart = getCart();
+      const cartContent = document.getElementById('cartContent');
+      if (cart.length === 0) {
+        cartContent.innerHTML = '<p class="text-center text-black">Your cart is empty.</p>';
+        return;
+      }
+      let total = 0;
+      let rows = cart.map(item => {
+        const product = products.find(p => p.id === item.id);
+        if (!product) return '';
+        total += product.price * item.qty;
+        return `
+          <tr>
+            <td><img src="${product.img}" alt="${product.name}"></td>
+            <td>${product.name}</td>
+            <td>$${product.price.toFixed(2)}</td>
+            <td>${item.qty}</td>
+            <td><button class="button" onclick="removeFromCart(${product.id})">Remove</button></td>
+          </tr>
+        `;
+      }).join('');
+      cartContent.innerHTML = `
+        <div class="cart-total">Total: $${total.toFixed(2)}</div>
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows}
+          </tbody>
+        </table>
+        <div class="cart-actions">
+          <button class="button" onclick="checkout()">Checkout</button>
+        </div>
+      `;
+    }
+    function checkout() {
+      localStorage.removeItem('cart');
+      renderCart();
+      alert('Thank you for your purchase!');
+    }
+    renderCart();
+  </script>
+  <script>
+    function toggleNav() {
+      var nav = document.getElementById('mainNav');
+      nav.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

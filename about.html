@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - HummloveClone.io</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <h1 class="site-title">HummloveClone.io</h1>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+        &#9776;
+      </button>
+      <nav id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html" class="active">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section style="max-width: 700px; margin: 3rem auto; background: var(--color-tan); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 2rem;">
+      <h2 class="text-center text-salmon">About HummloveClone.io</h2>
+      <p class="text-black" style="font-size: 1.1rem; margin-top: 2rem;">
+        HummloveClone.io was founded with a passion for bringing warmth, style, and personality into every home. Our curated selection of products is inspired by earthy tones and modern design, blending tan, salmon, white, and black for a timeless aesthetic.
+      </p>
+      <p class="text-black" style="margin-top: 1.5rem;">
+        We believe in quality craftsmanship and thoughtful details. Each item in our shop is handpicked or handmade, ensuring it meets our high standards for beauty and function. Whether you're looking for a cozy mug, a stylish pillow, or an eco-friendly tote, you'll find something special at HummloveClone.io.
+      </p>
+      <p class="text-black" style="margin-top: 1.5rem;">
+        Thank you for supporting our small business and sharing in our love for design. We hope our products bring joy and comfort to your everyday life.
+      </p>
+      <div class="text-center" style="margin-top: 2rem;">
+        <span class="text-salmon" style="font-size: 1.2rem; font-weight: bold;">Contact us: hello@hummloveclone.io</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer text-center">
+    <div class="footer-content">
+      <span>&copy; 2025 HummloveClone.io. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html" class="active">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </footer>
+  <script>
+    function toggleNav() {
+      var nav = document.getElementById('mainNav');
+      nav.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

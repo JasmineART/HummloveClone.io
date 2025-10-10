@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - HummloveClone.io</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <h1 class="site-title">HummloveClone.io</h1>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+        &#9776;
+      </button>
+      <nav id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="text-center text-tan">Shop Products</h2>
+    <!-- Filter Bar -->
+    <div class="filter-bar text-center">
+      <label for="category">Category:</label>
+      <select id="category">
+        <option value="all">All</option>
+        <option value="mugs">Mugs</option>
+        <option value="pillows">Pillows</option>
+        <option value="bags">Bags</option>
+      </select>
+      <label for="color">Color:</label>
+      <select id="color">
+        <option value="all">All</option>
+        <option value="tan">Tan</option>
+        <option value="salmon">Salmon</option>
+        <option value="black">Black</option>
+      </select>
+      <button class="button" onclick="filterProducts()">Filter</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="productGrid">
+      <!-- Product cards will be rendered here by JS -->
+    </div>
+  </main>
+
+  <footer class="footer text-center">
+    <div class="footer-content">
+      <span>&copy; 2025 HummloveClone.io. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Sample product data
+    const products = [
+      { id: 1, name: 'Handmade Mug', category: 'mugs', color: 'tan', price: 18, img: 'https://via.placeholder.com/250x150?text=Mug' },
+      { id: 2, name: 'Salmon Throw Pillow', category: 'pillows', color: 'salmon', price: 24, img: 'https://via.placeholder.com/250x150?text=Pillow' },
+      { id: 3, name: 'Black Canvas Tote', category: 'bags', color: 'black', price: 15, img: 'https://via.placeholder.com/250x150?text=Tote' },
+      { id: 4, name: 'Tan Pillow', category: 'pillows', color: 'tan', price: 22, img: 'https://via.placeholder.com/250x150?text=Tan+Pillow' },
+      { id: 5, name: 'Salmon Mug', category: 'mugs', color: 'salmon', price: 19, img: 'https://via.placeholder.com/250x150?text=Salmon+Mug' },
+      { id: 6, name: 'Black Mug', category: 'mugs', color: 'black', price: 20, img: 'https://via.placeholder.com/250x150?text=Black+Mug' },
+      { id: 7, name: 'Tan Tote', category: 'bags', color: 'tan', price: 16, img: 'https://via.placeholder.com/250x150?text=Tan+Tote' },
+      { id: 8, name: 'Salmon Tote', category: 'bags', color: 'salmon', price: 17, img: 'https://via.placeholder.com/250x150?text=Salmon+Tote' }
+    ];
+
+    function renderProducts(filtered) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+      filtered.forEach(product => {
+        grid.innerHTML += `
+          <div class="card">
+            <img src="${product.img}" alt="${product.name}" style="width:100%; border-radius: 6px;">
+            <h4 class="text-black">${product.name}</h4>
+            <p class="text-black">Category: ${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
+            <span class="text-salmon" style="font-weight: bold;">$${product.price.toFixed(2)}</span>
+            <button class="button" style="margin-top: 1rem; width: 100%;">Add to Cart</button>
+          </div>
+        `;
+      });
+    }
+
+    function filterProducts() {
+      const category = document.getElementById('category').value;
+      const color = document.getElementById('color').value;
+      let filtered = products;
+      if (category !== 'all') {
+        filtered = filtered.filter(p => p.category === category);
+      }
+      if (color !== 'all') {
+        filtered = filtered.filter(p => p.color === color);
+      }
+      renderProducts(filtered);
+    }
+
+    // Initial render
+    renderProducts(products);
+  </script>
+  <script>
+    function toggleNav() {
+      var nav = document.getElementById('mainNav');
+      nav.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

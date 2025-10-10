@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - HummloveClone.io</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .product-details {
+      max-width: 700px;
+      margin: 3rem auto;
+      display: flex;
+      gap: 2rem;
+      background: var(--color-tan);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 2rem;
+      flex-wrap: wrap;
+    }
+    .product-img {
+      flex: 1 1 250px;
+      min-width: 250px;
+    }
+    .product-info {
+      flex: 2 1 300px;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <h1 class="site-title">HummloveClone.io</h1>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+        &#9776;
+      </button>
+      <nav id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="product-details">
+      <div class="product-img">
+        <img id="productImage" src="https://via.placeholder.com/350x250?text=Product" alt="Product Image" style="width:100%; border-radius: 6px;">
+      </div>
+      <div class="product-info">
+        <h2 id="productName" class="text-black">Product Name</h2>
+        <p id="productDesc" class="text-black">Product description goes here.</p>
+        <span id="productPrice" class="text-salmon" style="font-weight: bold; font-size: 1.2rem;">$0.00</span>
+        <button class="button" style="margin-top: 2rem; width: 100%;">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer text-center">
+    <div class="footer-content">
+      <span>&copy; 2025 HummloveClone.io. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Example: Get product ID from query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+
+    // Sample product data (same as shop.html)
+    const products = [
+      { id: 1, name: 'Handmade Mug', desc: 'A beautiful tan ceramic mug for your morning coffee.', price: 18, img: 'https://via.placeholder.com/350x250?text=Mug' },
+      { id: 2, name: 'Salmon Throw Pillow', desc: 'Soft and stylish pillow to brighten your space.', price: 24, img: 'https://via.placeholder.com/350x250?text=Pillow' },
+      { id: 3, name: 'Black Canvas Tote', desc: 'Eco-friendly tote bag for everyday use.', price: 15, img: 'https://via.placeholder.com/350x250?text=Tote' },
+      { id: 4, name: 'Tan Pillow', desc: 'Earthy tan pillow for cozy comfort.', price: 22, img: 'https://via.placeholder.com/350x250?text=Tan+Pillow' },
+      { id: 5, name: 'Salmon Mug', desc: 'Vibrant salmon mug for tea or coffee.', price: 19, img: 'https://via.placeholder.com/350x250?text=Salmon+Mug' },
+      { id: 6, name: 'Black Mug', desc: 'Classic black mug for any occasion.', price: 20, img: 'https://via.placeholder.com/350x250?text=Black+Mug' },
+      { id: 7, name: 'Tan Tote', desc: 'Tan tote bag for shopping or travel.', price: 16, img: 'https://via.placeholder.com/350x250?text=Tan+Tote' },
+      { id: 8, name: 'Salmon Tote', desc: 'Salmon colored tote for style and utility.', price: 17, img: 'https://via.placeholder.com/350x250?text=Salmon+Tote' }
+    ];
+
+    function showProductDetails(id) {
+      const product = products.find(p => p.id == id);
+      if (product) {
+        document.getElementById('productImage').src = product.img;
+        document.getElementById('productName').textContent = product.name;
+        document.getElementById('productDesc').textContent = product.desc;
+        document.getElementById('productPrice').textContent = `$${product.price.toFixed(2)}`;
+      } else {
+        document.querySelector('.product-details').innerHTML = '<p class="text-center text-black">Product not found.</p>';
+      }
+    }
+
+    if (productId) {
+      showProductDetails(productId);
+    }
+  </script>
+  <script>
+    function toggleNav() {
+      var nav = document.getElementById('mainNav');
+      nav.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
