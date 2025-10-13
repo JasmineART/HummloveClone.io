@@ -1,0 +1,153 @@
+/* General Reset and Font (adjust as needed) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif; /* Use a clean, modern font */
+}
+
+body {
+    background-color: #f8f8f8;
+}
+
+/* --- Header Container --- */
+.hummlove-header {
+    width: 100%;
+    /* Use a high z-index to ensure the header stays on top */
+    position: sticky; 
+    top: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 0 15px; /* Add some padding on the sides */
+}
+
+/* --- 1. Top Bar (Mimics Phone Status) --- */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    padding: 5px 0;
+    color: #333;
+}
+
+.status-icons i, .battery {
+    margin-left: 5px;
+}
+
+.battery {
+    font-weight: bold;
+}
+
+/* --- 2. Main Logo and Utility Icons --- */
+.main-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.logo {
+    /* Style the 'HUMMLOVE' logo text */
+    font-size: 24px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -1px;
+    /* Mimic the pink 'FASHION' part with a subtle gradient or color */
+    background: linear-gradient(to right, #e91e63 45%, #000 45%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.utility-icons i {
+    font-size: 20px;
+    margin-left: 15px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* --- 3. Search Bar --- */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 8px 10px;
+    margin: 10px 0;
+}
+
+.search-bar i {
+    font-size: 16px;
+    color: #999;
+    margin-right: 10px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: #333;
+    outline: none; /* Remove focus outline */
+}
+
+.search-bar input::placeholder {
+    color: #999;
+}
+
+/* --- 4. Primary Navigation Tabs --- */
+.primary-nav {
+    display: flex;
+    overflow-x: auto; /* Allows horizontal scrolling if tabs don't fit */
+    white-space: nowrap; /* Prevents wrapping */
+    padding-bottom: 5px;
+    /* Optional: Hide scrollbar if overflow is used */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.primary-nav::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+
+.primary-nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 10px 8px;
+    margin-right: 15px;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.primary-nav a:hover {
+    color: #e91e63; /* Pink on hover */
+}
+
+/* The active tab with the pink underline */
+.primary-nav a.active {
+    color: #000;
+    font-weight: 900;
+}
+
+.primary-nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #e91e63; /* Pink underline */
+}
+
+/* --- Placeholder for Main Content --- */
+.hero-image {
+    height: 400px; /* Example height */
+    background-color: #999; /* Placeholder for a background image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+}
