@@ -225,34 +225,17 @@
                         <button class="py-2 hover:text-primary-sage transition-colors duration-300" onclick="navigate('home')">HOME</button>
                     </div>
                     <div class="group relative">
-                        <button class="py-2 hover:text-primary-sage transition-colors duration-300 flex items-center" onclick="navigate('products')">
-                            SHOP
-                            <svg class="ml-1.5 w-3.5 h-3.5 text-gray-400 group-hover:text-primary-sage transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                        </button>
-                        <!-- Dropdown -->
-                        <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-40">
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('products'); renderProductList();">All Products</button>
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('products'); renderProductList('Womens');">Womens</button>
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('products'); renderProductList('Mens');">Mens</button>
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('products'); renderProductList('Kids');">Kids</button>
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('products'); renderProductList('Apparel');">Apparel</button>
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('products'); renderProductList('Shoes');">Shoes</button>
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('products'); renderProductList('Handbags');">Handbags</button>
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('products'); renderProductList('Scarfs');">Scarfs</button>
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('products'); renderProductList('Jewelry');">Jewelry</button>
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('products'); renderProductList('Living Decor');">Living Decor</button>
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('products'); renderProductList('Accessories');">Accessories</button>
-                        </div>
+                        <button class="py-2 hover:text-primary-sage transition-colors duration-300" onclick="navigate('products')">SHOP</button>
                     </div>
                     <div class="group relative">
-                        <button class="py-2 px-3 hover:text-accent-orange transition flex items-center" onclick="navigate('about')">
+                        <button class="py-2 px-3 hover:text-accent-orange transition flex items-center" onclick="navigate('about')" aria-haspopup="true">
                             ABOUT
                             <svg class="ml-1 w-4 h-4 text-gray-400 group-hover:text-accent-orange transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                         </button>
-                        <!-- Dropdown -->
-                        <div class="absolute left-0 mt-2 w-40 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-40">
+                        <!-- Dropdown (keep visible while hovered or focused) -->
+                        <div class="absolute left-0 mt-1 w-40 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity duration-300 ease-in-out z-40">
                             <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('about')">Our Story</button>
-                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigate('about')">Sustainability</button>
+                            <button class="block w-full text-left px-4 py-2 hover:bg-gray-50" onclick="navigateToAboutSection('sustainability')">Sustainability</button>
                         </div>
                     </div>
                     <div class="group relative">
@@ -457,40 +440,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Mobile Navigation Dropdown -->
-            <nav id="mobile-menu" class="hidden md:hidden absolute left-0 right-0 bg-white shadow-xl z-40 transition-all duration-300">
-                <ul class="flex flex-col space-y-2 p-4 text-primary-dark font-medium">
-                    <li><button class="w-full text-left py-2 hover:text-accent-orange" onclick="navigate('home')">Home</button></li>
-                    <li class="relative group">
-                        <button class="w-full text-left py-2 hover:text-accent-orange flex items-center" onclick="navigate('products'); toggleMenu();">Shop
-                            <svg class="ml-1 w-4 h-4 text-gray-400 group-hover:text-accent-orange transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                        </button>
-                        <ul class="ml-4 mt-1 space-y-1">
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('products'); renderProductList(); toggleMenu();">All Products</button></li>
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('products'); renderProductList('Womens'); toggleMenu();">Womens</button></li>
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('products'); renderProductList('Mens'); toggleMenu();">Mens</button></li>
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('products'); renderProductList('Kids'); toggleMenu();">Kids</button></li>
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('products'); renderProductList('Apparel'); toggleMenu();">Apparel</button></li>
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('products'); renderProductList('Shoes'); toggleMenu();">Shoes</button></li>
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('products'); renderProductList('Handbags'); toggleMenu();">Handbags</button></li>
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('products'); renderProductList('Scarfs'); toggleMenu();">Scarfs</button></li>
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('products'); renderProductList('Jewelry'); toggleMenu();">Jewelry</button></li>
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('products'); renderProductList('Living Decor'); toggleMenu();">Living Decor</button></li>
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('products'); renderProductList('Accessories'); toggleMenu();">Accessories</button></li>
-                        </ul>
-                    </li>
-                    <li class="relative group">
-                        <button class="w-full text-left py-2 hover:text-accent-orange flex items-center">About
-                            <svg class="ml-1 w-4 h-4 text-gray-400 group-hover:text-accent-orange transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                        </button>
-                        <ul class="ml-4 mt-1 space-y-1">
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('about')">Our Story</button></li>
-                            <li><button class="w-full text-left py-1 hover:text-accent-orange" onclick="navigate('about')">Sustainability</button></li>
-                        </ul>
-                    </li>
-                    <li><button class="w-full text-left py-2 hover:text-accent-orange" onclick="navigate('cart')">Cart</button></li>
-                </ul>
-            </nav>
+            <!-- Removed complex mobile dropdown to keep a single simplified mobile menu below -->
         </header>
         
         <!-- Mobile Navigation Menu -->
@@ -988,6 +938,25 @@
                                 Today, we're a certified B Corporation with a community of 50,000+ conscious consumers worldwide, proving 
                                 that the future of fashion is sustainable, ethical, and beautiful.
                             </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sustainability Section -->
+                <section id="sustainability" class="py-12 md:py-20 px-6 bg-gray-50">
+                    <div class="max-w-5xl mx-auto">
+                        <h2 class="font-serif text-3xl md:text-4xl text-primary-dark mb-4">Sustainability</h2>
+                        <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-4">
+                            Sustainability is at the core of everything we do. From regenerative materials and low-impact dyes to fair wages and transparent sourcing,
+                            we continuously measure and improve our environmental and social footprint.
+                        </p>
+                        <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                            <li>100% plant-based or recycled materials across key collections.</li>
+                            <li>Carbon neutral operations and verified offsets for shipments.</li>
+                            <li>Fair wages and long-term partnerships with artisan cooperatives.</li>
+                        </ul>
+                        <div class="mt-6">
+                            <button onclick="navigate('about'); alertMessage('Scrolling to Sustainability.');" class="btn-secondary">Learn More</button>
                         </div>
                     </div>
                 </section>
@@ -1685,7 +1654,7 @@
                         <ul class="space-y-3">
                             <li><button onclick="navigate('about')" class="text-white/70 hover:text-primary-sage transition-colors text-sm">Our Story</button></li>
                             <li><button onclick="navigate('about')" class="text-white/70 hover:text-primary-sage transition-colors text-sm">Impact Report</button></li>
-                            <li><button onclick="navigate('about')" class="text-white/70 hover:text-primary-sage transition-colors text-sm">Sustainability</button></li>
+                            <li><button onclick="navigateToAboutSection('sustainability')" class="text-white/70 hover:text-primary-sage transition-colors text-sm">Sustainability</button></li>
                             <li><button onclick="navigate('about')" class="text-white/70 hover:text-primary-sage transition-colors text-sm">Certifications</button></li>
                             <li><button onclick="currentUser ? navigate('profile') : navigate('login')" class="text-white/70 hover:text-primary-sage transition-colors text-sm">My Account</button></li>
                             <li><button onclick="navigate('orders')" class="text-white/70 hover:text-primary-sage transition-colors text-sm">Order Status</button></li>
@@ -3407,10 +3376,7 @@
 
         // --- Utility Functions ---
 
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
+        <!-- Removed duplicate toggleMenu; single implementation exists later in the file -->
 
         function toggleAccountMenu() {
             const dropdown = document.getElementById('account-dropdown');
@@ -3865,6 +3831,20 @@
                 renderCompare();
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Navigate to About and scroll to a subsection by id
+        function navigateToAboutSection(sectionId) {
+            navigate('about');
+            // Wait for the about view to render then scroll
+            setTimeout(() => {
+                const el = document.getElementById(sectionId);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    console.warn('navigateToAboutSection: element not found', sectionId);
+                }
+            }, 150);
         }
 
         function renderProductDetail(productId) {
@@ -5784,6 +5764,13 @@
             
             // Initial render
             console.log('🚀 Initializing app with', products.length, 'products');
+            // Prepare filters and a default product rendering so filters are populated even before visiting Products
+            if (typeof initializeFilters === 'function') {
+                try { initializeFilters(); } catch (e) { console.warn('initializeFilters error:', e); }
+            }
+            if (typeof applyFilters === 'function') {
+                try { applyFilters(); } catch (e) { console.warn('applyFilters error:', e); }
+            }
             navigate('home');
             updateCartUI();
             updateAuthUI();
